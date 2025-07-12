@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>🌵spin the spike🌵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {position:relative;
+            background-color: #2f855a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header  img {position:absolute;
+          right:50px;  width: 5.1rem;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        #result {
+            margin-top: 40px;
+            font-size: 2em;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+        }
+
+        #result.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        footer {
+            background-color: #2f855a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        .social-links {
+            margin-top: 8px;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            margin: 0 6px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a img {
+            width: 3rem;
+        }
+
+        .social-links a:hover {
+            color: #b2f2bb;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                width: 90%;
+                font-size: 1em;
+            }
+
+            #result {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header> <img src="https://freepngdesign.com/content/uploads/images/p-2843-6-bmw-logo-png-transparent-logo-506551205984.png" onclick="check()">
+        <div class="logo">🌵</div>
+        🎲 Spin The Spike 🎲
+    </header>
+
+    <div class="container">
+        <h1>დააჭირე ღილაკს და მიიღე პასუხი</h1>
+        <button onclick="getRandomResponse()">🎯 დააჭირე</button>
+        <div id="result"></div>
+    </div>
+
+    <footer>
+        © 2025 SpinTheSpike.ge |  შექმნილია გართობისთვის 🌟
+        <div class="social-links">
+            <a href="https://instagram.com/saba_inasaridze" target="_blank">
+                <img src="https://images.vexels.com/media/users/3/137198/isolated/preview/07f0d7b69ef071571e4ada2f4d6a053a-instagram-icon-colorful.png" alt="a">
+            </a>
+        </div>
+    </footer>
+
+    <audio id="click-sound">
+        <source src="/notification-ping-372479.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+   <audio id="click-soundbmw">
+        <source src="/bmw.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const responses = [
+            "კი", "არა", "რატომაც არა", "არამგონია",
+            "ვნახოთ", "სავარაუდოდ", "უეჭველი", "არვიცი",
+            "შესაძლებელია", "მემგონი", "თავისთავად"
+        ];
+
+        const clickSound = document.getElementById('click-sound');
+        const clickSoundcheck = document.getElementById('click-soundbmw');
+        function check(){ clickSoundcheck.currentTime = 0;
+            clickSoundcheck.play();}
+        function getRandomResponse() {
+            const resultDiv = document.getElementById('result');
+            const randomIndex = Math.floor(Math.random() * responses.length);
+            const response = responses[randomIndex];
+
+            clickSound.currentTime = 0;
+            clickSound.play();
+
+            resultDiv.classList.remove('show');
+            setTimeout(() => {
+                resultDiv.textContent = response;
+                resultDiv.classList.add('show');
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>
